@@ -26,16 +26,6 @@ def find_user_by_name(username: str):
     return cursor.fetchall()
 
 
-def export_file(filename: str) -> str:
-    """
-    Finding 3: path traversal.
-    User-controlled filename is joined into a filesystem path without validation.
-    """
-    base_dir = Path("./exports")
-    file_path = base_dir / filename
-
-    return file_path.read_text(encoding="utf-8")
-
 
 def ping_host(host: str) -> str:
     """
