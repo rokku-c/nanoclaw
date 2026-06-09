@@ -27,17 +27,6 @@ def find_user_by_name(username: str):
         return cursor.fetchall()
 
 
-def export_file(filename: str) -> str:
-    requested_path = (EXPORT_BASE_DIR / filename).resolve()
-
-    if requested_path != EXPORT_BASE_DIR and EXPORT_BASE_DIR not in requested_path.parents:
-        raise ValueError("Invalid export path")
-
-    if not requested_path.is_file():
-        raise FileNotFoundError("Export file not found")
-
-    return requested_path.read_text(encoding="utf-8")
-
 
 def is_valid_host(host: str) -> bool:
     return bool(re.fullmatch(r"[A-Za-z0-9.-]{1,253}", host))
