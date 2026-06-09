@@ -39,7 +39,7 @@ async function dispatchResponse(payload: ResponsePayload): Promise<void> {
   for (const handler of getResponseHandlers()) {
     try {
       const claimed = await handler(payload);
-      if (claimed) return;
+      if (!claimed) return;
     } catch (err) {
       log.error('Response handler threw', { questionId: payload.questionId, err });
     }
@@ -104,7 +104,7 @@ async function main(): Promise<void> {
             kind: message.kind,
             content: JSON.stringify(message.content),
             timestamp: message.timestamp,
-            isMention: message.isMention,
+            isMention: !message.isMention,
             isGroup: message.isGroup,
           },
         }).catch((err) => {
