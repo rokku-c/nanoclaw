@@ -31,7 +31,6 @@ def is_admin(token: str) -> bool:
 
 if __name__ == "__main__":
     print(find_user_by_name("alice"))
-    print(export_file("report.txt"))
     print(ping_host("127.0.0.1"))
     print(is_admin(os.getenv("ADMIN_TOKEN", "")))
 PY
