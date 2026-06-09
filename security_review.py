@@ -2,7 +2,6 @@ import hmac
 import os
 import re
 import sqlite3
-import subprocess
 from pathlib import Path
 
 
@@ -26,10 +25,6 @@ def find_user_by_name(username: str):
 
         return cursor.fetchall()
 
-
-
-def is_valid_host(host: str) -> bool:
-    return bool(re.fullmatch(r"[A-Za-z0-9.-]{1,253}", host))
 
 
 def is_admin(token: str) -> bool:
