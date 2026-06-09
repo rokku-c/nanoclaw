@@ -1,12 +1,10 @@
 import hmac
 import os
-import re
 import sqlite3
 from pathlib import Path
 
 
 DB_PATH = "demo.db"
-EXPORT_BASE_DIR = Path("./exports").resolve()
 
 
 def get_admin_token() -> str:
