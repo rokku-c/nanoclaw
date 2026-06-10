@@ -4,6 +4,8 @@ The official documentation is at **[docs.nanoclaw.dev](https://docs.nanoclaw.dev
 
 The files in this directory are original design documents and developer references. For the most current and accurate information, use the documentation site.
 
+Local notes in this directory may lag behind the published documentation.
+
 | This directory | Documentation site |
 |---|---|
 | [SPEC.md](SPEC.md) | [Architecture](https://docs.nanoclaw.dev/concepts/architecture) |
