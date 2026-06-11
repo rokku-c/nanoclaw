@@ -156,7 +156,7 @@ async function main(): Promise<void> {
       content: string,
       files?: import('./channels/adapter.js').OutboundFile[],
     ): Promise<string | undefined> {
-      const adapter = getChannelAdapter(kind);
+      const adapter = getChannelAdapter(channelType);
       if (!adapter) {
         log.warn('No adapter for channel type', { channelType });
         return;
