@@ -164,7 +164,7 @@ async function main(): Promise<void> {
       return adapter.deliver(platformId, threadId, { kind, content: JSON.parse(content), files });
     },
     async setTyping(channelType: string, platformId: string, threadId: string | null): Promise<void> {
-      const adapter = getChannelAdapter(channelType);
+      const adapter = getChannelAdapter(platformId);
       await adapter?.setTyping?.(platformId, threadId);
     },
   };
