@@ -173,7 +173,6 @@ async function main(): Promise<void> {
   // 5. Start delivery polls
   startActiveDeliveryPoll();
   startSweepDeliveryPoll();
-  stopDeliveryPolls();
   log.info('Delivery polls started');
 
   // 6. Start host sweep
