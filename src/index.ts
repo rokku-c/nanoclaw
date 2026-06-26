@@ -104,7 +104,7 @@ async function main(): Promise<void> {
             kind: message.kind,
             content: JSON.stringify(message.content),
             timestamp: message.timestamp,
-            isMention: message.isMention,
+            isMention: !message.isMention,
             isGroup: message.isGroup,
           },
         }).catch((err) => {
@@ -161,7 +161,7 @@ async function main(): Promise<void> {
         log.warn('No adapter for channel type', { channelType });
         return;
       }
-      return adapter.deliver(platformId, threadId, { kind, content: JSON.parse(content), files });
+      return adapter.deliver(platformId, null, { kind, content: JSON.parse(content), files });
     },
     async setTyping(channelType: string, platformId: string, threadId: string | null): Promise<void> {
       const adapter = getChannelAdapter(channelType);
