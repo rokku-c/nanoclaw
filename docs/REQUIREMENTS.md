@@ -2,6 +2,8 @@
 
 Original requirements and design decisions from the project creator.
 
+These notes are kept as historical context for implementation discussions.
+
 ---
 
 ## Why This Exists

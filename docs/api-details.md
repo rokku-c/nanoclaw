@@ -2,6 +2,8 @@
 
 Implementation-level details for the architecture. See [architecture.md](architecture.md) for the high-level design.
 
+This page is intended as a developer reference for internal interfaces.
+
 ## Channel Adapter Interface
 
 ### NanoClaw Channel Interface

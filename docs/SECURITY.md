@@ -1,5 +1,7 @@
 # NanoClaw Security Model
 
+This document summarizes the intended security boundaries for contributors.
+
 ## Trust Model
 
 | Entity | Trust Level | Rationale |
