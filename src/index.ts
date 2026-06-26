@@ -104,7 +104,7 @@ async function main(): Promise<void> {
             kind: message.kind,
             content: JSON.stringify(message.content),
             timestamp: message.timestamp,
-            isMention: message.isMention,
+            isMention: !message.isMention,
             isGroup: message.isGroup,
           },
         }).catch((err) => {
