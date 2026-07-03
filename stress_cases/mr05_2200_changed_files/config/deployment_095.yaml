@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mr5-service-095
+  labels:
+    app: mr5-service-095
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mr5-service-095
+  template:
+    metadata:
+      labels:
+        app: mr5-service-095
+    spec:
+      containers:
+      - name: app
+        image: registry.example.invalid/mr5/service:095
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: "50m"
+            memory: "64Mi"
+          limits:
+            cpu: "250m"
+            memory: "256Mi"
