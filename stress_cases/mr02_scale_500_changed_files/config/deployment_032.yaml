@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scale-500-worker-032
+  labels:
+    app: scale-test
+    scale: "500"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scale-500-worker-032
+  template:
+    metadata:
+      labels:
+        app: scale-500-worker-032
+    spec:
+      containers:
+        - name: worker
+          image: example.invalid/scale-worker:500-032
+          securityContext:
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "200m"
+              memory: "128Mi"
