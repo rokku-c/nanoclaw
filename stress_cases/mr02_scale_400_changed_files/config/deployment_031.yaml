@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scale-400-worker-031
+  labels:
+    app: scale-test
+    scale: "400"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scale-400-worker-031
+  template:
+    metadata:
+      labels:
+        app: scale-400-worker-031
+    spec:
+      containers:
+        - name: worker
+          image: example.invalid/scale-worker:400-031
+          securityContext:
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "200m"
+              memory: "128Mi"
