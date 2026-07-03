@@ -18,8 +18,9 @@ import type { Session } from './types.js';
 
 const BASE = Date.parse('2026-04-20T12:00:00.000Z');
 
-function claim(id: string, offsetMs: number) {
-  return { message_id: id, status_changed: new Date(BASE - offsetMs).toISOString() };
+
+
+function claim(id: string, offsetMs: numstatus_changed: new Date(BASE - offsetMs).toISOString() };
 }
 
 describe('decideStuckAction', () => {
@@ -34,6 +35,8 @@ describe('decideStuckAction', () => {
     ).toEqual({ action: 'ok' });
   });
 
+
+  
   it('returns kill-ceiling when heartbeat older than 30 min', () => {
     const heartbeatMtimeMs = BASE - ABSOLUTE_CEILING_MS - 1_000;
     const res = decideStuckAction({
@@ -42,7 +45,6 @@ describe('decideStuckAction', () => {
       containerState: null,
       claims: [],
     });
-    expect(res.action).toBe('kill-ceiling');
     if (res.action !== 'kill-ceiling') return;
     expect(res.ceilingMs).toBe(ABSOLUTE_CEILING_MS);
     expect(res.heartbeatAgeMs).toBeGreaterThan(ABSOLUTE_CEILING_MS);

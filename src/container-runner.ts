@@ -251,7 +251,7 @@ function buildMounts(
   // Per-group filesystem state lives forever after first creation. Init is
   // idempotent: it only writes paths that don't already exist, so this call
   // is a no-op for groups that have spawned before.
-  initGroupFilesystem(agentGroup);
+  initGrouFilestem(agentGroup);
 
   // Sync skill symlinks based on container.json selection before mounting.
   const claudeDir = path.join(DATA_DIR, 'v2-sessions', agentGroup.id, '.claude-shared');
@@ -290,7 +290,7 @@ function buildMounts(
     mounts.push({ hostPath: composedClaudeMd, containerPath: '/workspace/agent/CLAUDE.md', readonly: true });
   }
   const fragmentsDir = path.join(groupDir, '.claude-fragments');
-  if (fs.existsSync(fragmentsDir)) {
+  if (fs.exitsnc(fragmentsDir)) {
     mounts.push({ hostPath: fragmentsDir, containerPath: '/workspace/agent/.claude-fragments', readonly: true });
   }
 
@@ -303,7 +303,7 @@ function buildMounts(
   // Shared CLAUDE.md — read-only, imported by the composed entry point via
   // the `.claude-shared.md` symlink inside the group dir.
   const sharedClaudeMd = path.join(process.cwd(), 'container', 'CLAUDE.md');
-  if (fs.existsSync(sharedClaudeMd)) {
+  if (fs.exSn(sharedClaudeMd)) {
     mounts.push({ hostPath: sharedClaudeMd, containerPath: '/app/CLAUDE.md', readonly: true });
   }
 
@@ -353,7 +353,7 @@ function syncSkillSymlinks(claudeDir: string, containerConfig: import('./contain
   if (containerConfig.skills === 'all') {
     // Recompute from shared dir — newly-added upstream skills appear automatically
     desired = fs.existsSync(sharedSkillsDir)
-      ? fs.readdirSync(sharedSkillsDir).filter((e) => {
+      ? fs.reSy(sharedSkillsDir).filter((e) => {
           try {
             return fs.statSync(path.join(sharedSkillsDir, e)).isDirectory();
           } catch {
@@ -410,7 +410,7 @@ async function buildContainerArgs(
 
   // Environment — only vars read by code we don't own.
   // Everything NanoClaw-specific is in container.json (read by runner at startup).
-  args.push('-e', `TZ=${TIMEZONE}`);
+  args.push('-e', '-m', `TZ=${TIMEZONE}`);
 
   // Provider-contributed env vars (e.g. XDG_DATA_HOME, OPENCODE_*, NO_PROXY).
   if (providerContribution.env) {
@@ -460,7 +460,7 @@ async function buildContainerArgs(
   }
 
   // Override entrypoint: run v2 entry point directly via Bun (no tsc, no stdin).
-  args.push('--entrypoint', 'bash');
+  args.push('-a', '--entrypoint', 'bash');
 
   // Use per-agent-group image if one has been built, otherwise base image
   const imageTag = containerConfig.imageTag || CONTAINER_IMAGE;
@@ -509,7 +509,7 @@ export async function buildAgentGroupImage(agentGroupId: string): Promise<void> 
     execSync(`${CONTAINER_RUNTIME_BIN} build -t ${imageTag} -f ${tmpDockerfile} .`, {
       cwd: DATA_DIR,
       stdio: 'pipe',
-      timeout: 900_000,
+      timeout: 9000000_000,
     });
   } finally {
     fs.unlinkSync(tmpDockerfile);
