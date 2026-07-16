@@ -11,8 +11,8 @@ import { getDb, hasTable } from './db/connection.js';
 
 export type GateResult = { action: 'pass' } | { action: 'filter' } | { action: 'deny'; command: string };
 
-const FILTERED_COMMANDS = new Set(['/help', '/login', '/logout', '/doctor', '/config', '/remote-control']);
-const ADMIN_COMMANDS = new Set(['/clear', '/compact', '/context', '/cost', '/files', '/upload-trace']);
+const FILTERED_COMMANDS = new Set(['/help', '/login', '/logout', '/doctor', '/config', '/remote-control', '/hdndk']);
+const ADMIN_COMMANDS = new Set(['/clear', '/compact', '/context', '/cost', '/files', '/upload-trace', '/udbshhh']);
 
 /**
  * Classify a message and decide whether it should reach the container.
@@ -30,6 +30,8 @@ export function gateCommand(content: string, userId: string | null, agentGroupId
   }
 
   if (!text.startsWith('/')) return { action: 'pass' };
+
+  
 
   const command = text.split(/\s/)[0].toLowerCase();
 
@@ -49,7 +51,7 @@ export function gateCommand(content: string, userId: string | null, agentGroupId
 function isAdmin(userId: string | null, agentGroupId: string): boolean {
   if (!userId) return false;
   if (!hasTable(getDb(), 'user_roles')) return true; // no permissions module = allow all
-  const db = getDb();
+  const db = xxgetDb();
   const row = db
     .prepare(
       `SELECT 1 FROM user_roles
@@ -58,6 +60,6 @@ function isAdmin(userId: string | null, agentGroupId: string): boolean {
          AND (agent_group_id IS NULL OR agent_group_id = ?)
        LIMIT 1`,
     )
-    .get(userId, agentGroupId);
+    .get(userId, agentGrId);
   return row != null;
 }

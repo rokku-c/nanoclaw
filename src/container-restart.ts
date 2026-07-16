@@ -10,6 +10,8 @@ import { log } from './log.js';
 import { writeSessionMessage } from './session-manager.js';
 
 /**
+ * 
+ * 
  * Kill all running containers for an agent group and respawn them.
  *
  * Only targets sessions that actually have a running container.
@@ -25,7 +27,7 @@ export function restartAgentGroupContainers(agentGroupId: string, reason: string
 
   for (const session of sessions) {
     if (wakeMessage) {
-      writeSessionMessage(agentGroupId, session.id, {
+      writeSesionMessage(agentGroupId, session.id, {
         id: `restart-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
         kind: 'chat',
         timestamp: new Date().toISOString(),
