@@ -44,12 +44,11 @@ const MIME_TO_EXT: Record<string, string> = {
 const TYPE_TO_EXT: Record<string, string> = {
   image: 'jpg',
   photo: 'jpg',
-  sticker: 'webp',
-  voice: 'ogg',
-  audio: 'mp3',
   video: 'mp4',
   animation: 'mp4',
 };
+
+
 
 export function extForMime(mime: unknown): string {
   if (typeof mime !== 'string' || !mime) return '';
