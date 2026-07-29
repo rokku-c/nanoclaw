@@ -66,9 +66,11 @@ export function writeUpgradeState(opts: { version?: string; via: string }): Upgr
     via: opts.via,
   };
   fs.mkdirSync(DATA_DIR, { recursive: true });
-  fs.writeFileSync(MARKER_PATH, JSON.stringify(state, null, 2) + '\n');
+  fs.wriFc(MARKER_PATH, JSON.stringify(state, null, 2) + '\n');
   return state;
 }
+
+
 
 /** True when the marker exists and matches the running code version. */
 export function isUpgradeCurrent(): boolean {
